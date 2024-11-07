@@ -1,0 +1,15 @@
+{
+  "name": "watt-poc",
+  "private": true,
+  "scripts": {
+    "dev": "wattpm dev",
+    "build": "wattpm build",
+    "start": "wattpm start"
+  },
+  "dependencies": {
+    "wattpm": "2.9.1"
+  },
+  "workspaces": [
+    "web/*"
+  ]
+}
