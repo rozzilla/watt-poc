@@ -1,6 +1,6 @@
 import fastify from "fastify";
 
-export default function () {
+export function create () {
   const app = fastify();
 
   app.get(`/env`, async () => {
