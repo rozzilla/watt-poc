@@ -7,7 +7,7 @@ export function build() {
     console.log("received request", req.url);
     res.setHeader("Content-Type", "application/json");
     res.end(
-      JSON.stringify({ content: `from node:http createServer: ${count++}!` })
+      JSON.stringify({ content: `from node path "${req.url}": ${count++}!` })
     );
   });
 

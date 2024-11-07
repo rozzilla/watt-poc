@@ -7,6 +7,7 @@
     "start": "wattpm start"
   },
   "dependencies": {
+    "@platformatic/composer": "^2.9.1",
     "wattpm": "2.9.1"
   },
   "workspaces": [
