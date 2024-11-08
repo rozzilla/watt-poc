@@ -12,5 +12,6 @@
       "id": "node3",
       "path": "./node3"
     }
-  ]
+  ],
+  "basePath": "/poc"
 }

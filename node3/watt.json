@@ -2,8 +2,5 @@
   "$schema": "https://schemas.platformatic.dev/@platformatic/node/2.9.1.json",
   "node": {
     "main": "server.js"
-  },
-  "application": {
-    "basePath": "/foo"
   }
 }
