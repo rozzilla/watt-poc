@@ -5,7 +5,7 @@
     "dev": "wattpm dev",
     "build": "wattpm build",
     "start": "wattpm start",
-    "setup": "npm i && cd ./composer && npm i && cd ../fastify2 && npm i && cd ../node3 && npm i && cd ../type && npm i && npm run build"
+    "setup": "npm i && cd ./composer && npm i && cd ../fastify2 && npm i && cd ../node3 && npm i && cd ../type1 && npm i && npm run build"
   },
   "dependencies": {
     "@platformatic/composer": "^2.9.1",
