@@ -7,10 +7,7 @@
   "logger": {
     "level": "info"
   },
-  "autoload": {
-    "path": "web"
-  },
-  "web": [
+  "services": [
     {
       "id": "node3",
       "path": "./node3"
