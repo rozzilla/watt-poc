@@ -13,5 +13,5 @@
       "path": "./node3"
     }
   ],
-  "basePath": "/poc"
+  "entrypoint": "main"
 }
