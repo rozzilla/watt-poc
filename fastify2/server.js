@@ -1,10 +1,12 @@
 import fastify from "fastify";
+import { fetch } from "undici";
 
 const app = fastify();
 
 app.get("/check", async () => {
   try {
-    const check = await fetch("http://localhost:3042/node/check");
+    const host = "localhost:3042";
+    const check = await fetch(`http://${host}/node/check`);
     console.info("check", await check.text());
     return { status: "ok2" };
   } catch (error) {
