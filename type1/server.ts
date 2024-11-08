@@ -4,10 +4,9 @@ export function build() {
   let count = 0;
 
   const server = createServer((req, res) => {
-    console.log("received request2", req.url);
     res.setHeader("Content-Type", "application/json");
     res.end(
-      JSON.stringify({ content: `from node3 path "${req.url}": ${count++}!` })
+      JSON.stringify({ content: `from type1 path "${req.url}": ${count++}!` })
     );
   });
 
