@@ -9,6 +9,10 @@
   },
   "services": [
     {
+      "id": "main",
+      "path": "./main"
+    },
+    {
       "id": "node3",
       "path": "./node3"
     }
