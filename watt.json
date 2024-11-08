@@ -20,6 +20,10 @@
     {
       "id": "node3",
       "path": "./node3"
+    },
+    {
+      "id": "type1",
+      "path": "./type1"
     }
   ]
 }
