@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.platformatic.dev/@platformatic/composer/2.9.1.json",
+  "composer": {
+    "services": [
+      {
+        "id": "fastify2",
+        "proxy": {
+          "prefix": "/fastify"
+        }
+      },
+      {
+        "id": "node3",
+        "proxy": {
+          "prefix": "/node"
+        }
+      }
+    ]
+  }
+}

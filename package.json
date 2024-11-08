@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "wattpm dev",
     "build": "wattpm build",
-    "start": "wattpm start"
+    "start": "wattpm start",
+    "setup": "npm i && cd ./composer && npm i && cd ../fastify2 && npm i && cd ../node3 && npm i"
   },
   "dependencies": {
     "@platformatic/composer": "^2.9.1",

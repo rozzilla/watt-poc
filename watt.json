@@ -7,10 +7,16 @@
   "logger": {
     "level": "info"
   },
-  "autoload": {
-    "path": "web"
-  },
+  "entrypoint": "composer",
   "web": [
+    {
+      "id": "composer",
+      "path": "./composer"
+    },
+    {
+      "id": "fastify2",
+      "path": "./fastify2"
+    },
     {
       "id": "node3",
       "path": "./node3"
