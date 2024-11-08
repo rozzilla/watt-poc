@@ -9,5 +9,11 @@
   },
   "autoload": {
     "path": "web"
-  }
+  },
+  "web": [
+    {
+      "id": "node3",
+      "path": "./node3"
+    }
+  ]
 }
