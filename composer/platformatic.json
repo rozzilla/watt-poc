@@ -19,6 +19,12 @@
         "proxy": {
           "prefix": "/typescript"
         }
+      },
+      {
+        "id": "type4",
+        "proxy": {
+          "prefix": "/ts2"
+        }
       }
     ]
   }

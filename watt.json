@@ -24,6 +24,10 @@
     {
       "id": "type1",
       "path": "./type1"
+    },
+    {
+      "id": "type4",
+      "path": "./type4"
     }
   ]
 }
