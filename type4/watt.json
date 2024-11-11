@@ -3,8 +3,7 @@
   "application": {
     "commands": {
       "build": "npm run build",
-      "development": "npm run dev",
-      "production": "npm run start"
+      "development": "npm run dev"
     }
   }
 }

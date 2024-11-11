@@ -1,4 +1,5 @@
 import { createServer } from "node:http";
+import esMain from "es-main";
 
 export function build() {
   let count = 0;
@@ -11,4 +12,10 @@ export function build() {
   });
 
   return server;
+}
+
+if (esMain(import.meta)) {
+  build().listen(0, function () {
+    console.log(`Server listening on http://localhost:${this.address().port}`);
+  })
 }
