@@ -1,16 +1,11 @@
 {
-  "name": "watt-poc",
-  "private": true,
+  "name": "watt-spdk",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "wattpm dev",
-    "build": "wattpm build",
-    "start": "wattpm start",
-    "setup": "npm i && cd ./composer && npm i && cd ../fastify2 && npm i && cd ../node3 && npm i && cd ../type1 && npm i && npm run build && cd ../type4 && npm i && npm run build"
+    "setup": "npm i && cd ./bug && npm i",
+    "start": "wattpm start"
   },
   "dependencies": {
-    "@platformatic/composer": "^2.11.0",
-    "@platformatic/node": "^2.11.0",
-    "typescript": "^5.6.3",
-    "wattpm": "2.11.0"
+    "wattpm": "2.17.0"
   }
 }
