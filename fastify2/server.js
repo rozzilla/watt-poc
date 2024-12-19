@@ -1,5 +1,6 @@
 import fastify from "fastify";
 import { fetch } from "undici";
+import Kafka from "node-rdkafka";
 
 const app = fastify();
 
@@ -15,6 +16,23 @@ app.get("/check", async () => {
 });
 
 app.listen({ port: 3000 }, (err) => {
+  console.log("started with v.", Kafka.librdkafkaVersion);
+
+  const consumer = new Kafka.KafkaConsumer(
+    {
+      "group.id": "kafka",
+      "metadata.broker.list": "localhost:9091",
+    },
+    {}
+  );
+  // consumer.addListener("foo", () => console.log("bar"));
+  consumer.connect();
+  consumer.consume();
+  // consumer.on("ready", () => {
+  //   console.log("ready");
+  // });
+  console.log("consumer started");
+
   if (err) {
     app.log.error(err);
     process.exit(1);
