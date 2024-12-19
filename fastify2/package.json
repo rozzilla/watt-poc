@@ -4,6 +4,7 @@
   "dependencies": {
     "@platformatic/node": "^2.26.1",
     "fastify": "^5.1.0",
-    "undici": "^6.20.1"
+    "undici": "^6.20.1",
+    "node-rdkafka": "3.2.1"
   }
 }
