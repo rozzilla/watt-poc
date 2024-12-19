@@ -25,12 +25,12 @@ app.listen({ port: 3000 }, (err) => {
     },
     {}
   );
-  // consumer.addListener("foo", () => console.log("bar"));
   consumer.connect();
-  consumer.consume();
-  // consumer.on("ready", () => {
-  //   console.log("ready");
-  // });
+  consumer.on("ready", () => {
+    console.log("ready");
+    consumer.subscribe(["foo"]);
+    consumer.consume();
+  });
   console.log("consumer started");
 
   if (err) {
