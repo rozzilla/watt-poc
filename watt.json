@@ -18,6 +18,10 @@
       "path": "./fastify2"
     },
     {
+      "id": "fastify3",
+      "path": "./fastify3"
+    },
+    {
       "id": "node3",
       "path": "./node3"
     },

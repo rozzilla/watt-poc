@@ -9,6 +9,12 @@
         }
       },
       {
+        "id": "fastify3",
+        "proxy": {
+          "prefix": "/tsfastify"
+        }
+      },
+      {
         "id": "node3",
         "proxy": {
           "prefix": "/node"
