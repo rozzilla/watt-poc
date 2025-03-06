@@ -8,9 +8,9 @@
     "setup": "npm i && cd ./composer && npm i && cd ../fastify2 && npm i && cd ../fastify3 && npm i && cd ../node3 && npm i && cd ../type1 && npm i && npm run build && cd ../type4 && npm i && npm run build"
   },
   "dependencies": {
-    "@platformatic/composer": "^2.32.0",
-    "@platformatic/node": "^2.32.0",
+    "@platformatic/composer": "^2.52.0",
+    "@platformatic/node": "^2.52.0",
     "typescript": "^5.6.3",
-    "wattpm": "2.32.0"
+    "wattpm": "2.52.0"
   }
 }
