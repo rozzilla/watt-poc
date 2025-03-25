@@ -7,6 +7,7 @@
   "logger": {
     "level": "info"
   },
+  "workers": 2,
   "entrypoint": "composer",
   "web": [
     {
