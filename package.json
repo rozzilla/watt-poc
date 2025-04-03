@@ -9,9 +9,9 @@
     "clean": "rm -rf ./composer/dist && rm -rf ./fastify2/dist && rm -rf ./fastify3/dist && rm -rf ./node3/dist && rm -rf ./type1/dist && rm -rf ./type4/dist"
   },
   "dependencies": {
-    "@platformatic/composer": "^2.55.0",
-    "@platformatic/node": "^2.55.0",
+    "@platformatic/composer": "^2.56.0",
+    "@platformatic/node": "^2.56.0",
     "typescript": "^5.6.3",
-    "wattpm": "2.55.0"
+    "wattpm": "2.56.0"
   }
 }
