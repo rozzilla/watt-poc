@@ -14,6 +14,8 @@ app.get("/check", async () => {
   }
 });
 
+app.get("/live", async () => ({ status: "ok" }));
+
 app.listen({ port: 3000 }, (err) => {
   if (err) {
     app.log.error(err);
