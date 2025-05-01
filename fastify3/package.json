@@ -2,7 +2,6 @@
   "name": "backend",
   "scripts": {
     "start": "platformatic start",
-    "test": "borp",
     "clean": "rm -fr ./dist",
     "build": "platformatic compile",
     "lint": "eslint"
@@ -12,6 +11,6 @@
     "fastify-tsconfig": "^2.0.0",
     "fastify": "^5.0.0",
     "typescript": "^5.5.4",
-    "wattpm": "^2.30.2"
+    "wattpm": "^2.62.1"
   }
 }
