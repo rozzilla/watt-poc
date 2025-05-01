@@ -1,11 +1,13 @@
-import { FastifyInstance, FastifyPluginOptions } from "fastify";
-import { request } from "undici";
+import { FastifyInstance } from "fastify";
+import { Dispatcher, request } from "undici";
 import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts";
 
-export default async function (
-  fastify: FastifyInstance,
-  opts: FastifyPluginOptions
-) {
+const checkAllServices = async (
+  promises: Promise<Dispatcher.ResponseData<null>>[]
+): Promise<boolean> =>
+  (await Promise.all(promises)).every(({ statusCode }) => statusCode === 200);
+
+export default async function (fastify: FastifyInstance) {
   const typedFastify = fastify.withTypeProvider<JsonSchemaToTsProvider>();
 
   typedFastify.get(
@@ -50,19 +52,37 @@ export default async function (
         },
       },
     },
-    async () => {
-      const host1 = "node3.plt.local";
-      const host2 = "fastify2.plt.local";
-      const host3 = "type1.plt.local";
-      const host4 = "type4.plt.local";
-      const result1 = request(`http://${host1}`);
-      const result2 = request(`http://${host2}/live`);
-      const result3 = request(`http://${host3}`);
-      const result4 = request(`http://${host4}`);
+    async () => ({
+      success: await checkAllServices([
+        request("http://fastify2.plt.local/live"),
+        request("http://node3.plt.local"),
+        request("http://type1.plt.local"),
+        request("http://type4.plt.local"),
+      ]),
+    })
+  );
 
-      const result = await Promise.all([result1, result2, result3, result4]);
-      const success = result.every(({ statusCode }) => statusCode === 200);
-      return { success };
-    }
+  typedFastify.get(
+    "/tcp",
+    {
+      schema: {
+        response: {
+          200: {
+            type: "object",
+            additionalProperties: false,
+            properties: { success: { type: "boolean" } },
+            required: ["success"],
+          },
+        },
+      },
+    },
+    async () => ({
+      success: await checkAllServices([
+        request("http://127.0.0.1:3043/fastify/live"),
+        request("http://127.0.0.1:3043/node"),
+        request("http://127.0.0.1:3043/typescript"),
+        request("http://127.0.0.1:3043/ts2"),
+      ]),
+    })
   );
 }
