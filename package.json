@@ -6,12 +6,16 @@
     "build": "wattpm build",
     "start": "wattpm start",
     "setup": "npm i && cd ./composer && npm i && cd ../fastify2 && npm i && cd ../fastify3 && npm i && cd ../node3 && npm i && cd ../type1 && npm i && npm run build && cd ../type4 && npm i && npm run build",
-    "clean": "rm -rf ./composer/dist && rm -rf ./fastify2/dist && rm -rf ./fastify3/dist && rm -rf ./node3/dist && rm -rf ./type1/dist && rm -rf ./type4/dist"
+    "clean": "rm -rf ./composer/dist && rm -rf ./fastify2/dist && rm -rf ./fastify3/dist && rm -rf ./node3/dist && rm -rf ./type1/dist && rm -rf ./type4/dist",
+    "test:performance": "npm run test:performance:tcp && npm run test:performance:ipc",
+    "test:performance:tcp": "autocannon -j -c 100 -d 10 -p 10 http://localhost:3043/tsfastify/tcp | jq '.'",
+    "test:performance:ipc": "autocannon -j -c 100 -d 10 -p 10 http://localhost:3043/tsfastify/ipc | jq '.'"
   },
   "dependencies": {
     "@platformatic/composer": "^2.62.1",
     "@platformatic/node": "^2.62.1",
     "typescript": "^5.6.3",
-    "wattpm": "^2.62.1"
+    "wattpm": "^2.62.1",
+    "autocannon": "^8.0.0"
   }
 }

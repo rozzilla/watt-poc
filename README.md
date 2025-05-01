@@ -21,24 +21,24 @@ If you want to test directly on your machine, move to the next section. Otherwis
 
 **Summary**
 
-- 2xx => `7276#` on `TCP` | `42269#` on `IPC`
-- 5xx => `2244#` on `TCP` | `0#` on `IPC`
-- latency.average => `829ms` on `TCP` | `234ms` on `IPC`
-- latency.p90 => `1112ms` on `TCP` | `321ms` on `IPC`
-- latency.p99 => `8010ms` on `TCP` | `234ms` on `IPC`
-- requests.average => `952/s` on `TCP` | `4227/s` on `IPC`
-- throughput.average => `180Kb` on `TCP` | `689Kb` on `IPC`
+- 2xx => `7775#` on `TCP` | `41237#` on `IPC`
+- 5xx => `2333#` on `TCP` | `0#` on `IPC`
+- latency.average => `818ms` on `TCP` | `240ms` on `IPC`
+- latency.p90 => `2173ms` on `TCP` | `312ms` on `IPC`
+- latency.p99 => `7969ms` on `TCP` | `552ms` on `IPC`
+- requests.average => `1010/s` on `TCP` | `4124/s` on `IPC`
+- throughput.average => `191Kb` on `TCP` | `672Kb` on `IPC`
 
 ### Start
 
-First of all, start the service with:
+First of all, start `watt` with:
 `npm run build && npm run start > log`
 
-Then run the command as described below.
+Then, run separately the `npm run test:performance` command, and wait for the results of both the `TCP` and `IPC` routes.
 
 #### TCP
 
-Service communicating through `TCP` => `npx autocannon -c 100 -d 10 -p 10 http://localhost:3043/tsfastify/tcp`
+Service communicating through `TCP` => `test:performance:tcp`
 
 ```json
 {
@@ -47,97 +47,104 @@ Service communicating through `TCP` => `npx autocannon -c 100 -d 10 -p 10 http:/
   "sampleInt": 1000,
   "pipelining": 10,
   "workers": 0,
-  "duration": 10.03,
+  "duration": 10.02,
   "samples": 10,
-  "start": "2025-05-01T10:28:33.968Z",
-  "finish": "2025-05-01T10:28:43.997Z",
-  "errors": 0,
+  "start": "2025-05-01T10:49:15.523Z",
+  "finish": "2025-05-01T10:49:25.544Z",
+  "errors": 13,
   "timeouts": 0,
   "mismatches": 0,
-  "non2xx": 2244,
+  "non2xx": 2333,
   "resets": 0,
   "1xx": 0,
-  "2xx": 7276,
+  "2xx": 7775,
   "3xx": 0,
   "4xx": 0,
-  "5xx": 2244,
-  "statusCodeStats": { "200": { "count": 7276 }, "500": { "count": 2244 } },
+  "5xx": 2333,
+  "statusCodeStats": {
+    "200": {
+      "count": 7775
+    },
+    "500": {
+      "count": 2333
+    }
+  },
   "latency": {
-    "average": 829.03,
-    "mean": 829.03,
-    "stddev": 1894.54,
-    "min": 7,
-    "max": 8088,
-    "p0_001": 7,
-    "p0_01": 7,
-    "p0_1": 8,
-    "p1": 24,
-    "p2_5": 37,
-    "p10": 50,
+    "average": 818.2,
+    "mean": 818.2,
+    "stddev": 1839.54,
+    "min": 11,
+    "max": 9521,
+    "p0_001": 11,
+    "p0_01": 11,
+    "p0_1": 13,
+    "p1": 19,
+    "p2_5": 29,
+    "p10": 45,
     "p25": 66,
-    "p50": 122,
-    "p75": 413,
-    "p90": 2153,
-    "p97_5": 7970,
-    "p99": 8010,
-    "p99_9": 8039,
-    "p99_99": 8088,
-    "p99_999": 8088,
-    "totalCount": 9520
+    "p50": 132,
+    "p75": 360,
+    "p90": 2173,
+    "p97_5": 7875,
+    "p99": 7969,
+    "p99_9": 8383,
+    "p99_99": 8653,
+    "p99_999": 9521,
+    "totalCount": 10108
   },
   "requests": {
-    "average": 952,
-    "mean": 952,
-    "stddev": 173.1,
-    "min": 622,
-    "max": 1184,
-    "total": 9520,
-    "p0_001": 622,
-    "p0_01": 622,
-    "p0_1": 622,
-    "p1": 622,
-    "p2_5": 622,
-    "p10": 622,
-    "p25": 833,
-    "p50": 987,
-    "p75": 1081,
-    "p90": 1112,
-    "p97_5": 1184,
-    "p99": 1184,
-    "p99_9": 1184,
-    "p99_99": 1184,
-    "p99_999": 1184,
-    "sent": 10520
+    "average": 1010.8,
+    "mean": 1010.8,
+    "stddev": 221.01,
+    "min": 591,
+    "max": 1281,
+    "total": 10108,
+    "p0_001": 591,
+    "p0_01": 591,
+    "p0_1": 591,
+    "p1": 591,
+    "p2_5": 591,
+    "p10": 591,
+    "p25": 960,
+    "p50": 1047,
+    "p75": 1202,
+    "p90": 1233,
+    "p97_5": 1281,
+    "p99": 1281,
+    "p99_9": 1281,
+    "p99_99": 1281,
+    "p99_999": 1281,
+    "sent": 11238
   },
   "throughput": {
-    "average": 180147.2,
-    "mean": 180147.2,
-    "stddev": 51853.77,
-    "min": 105861,
-    "max": 300521,
-    "total": 1801573,
-    "p0_001": 105919,
-    "p0_01": 105919,
-    "p0_1": 105919,
-    "p1": 105919,
-    "p2_5": 105919,
-    "p10": 105919,
-    "p25": 143999,
-    "p50": 176511,
-    "p75": 204543,
-    "p90": 215807,
-    "p97_5": 300543,
-    "p99": 300543,
-    "p99_9": 300543,
-    "p99_99": 300543,
-    "p99_999": 300543
+    "average": 191692.8,
+    "mean": 191692.8,
+    "stddev": 63243.66,
+    "min": 98793,
+    "max": 334795,
+    "total": 1917095,
+    "p0_001": 98815,
+    "p0_01": 98815,
+    "p0_1": 98815,
+    "p1": 98815,
+    "p2_5": 98815,
+    "p10": 98815,
+    "p25": 165887,
+    "p50": 180479,
+    "p75": 219135,
+    "p90": 232447,
+    "p97_5": 334847,
+    "p99": 334847,
+    "p99_9": 334847,
+    "p99_99": 334847,
+    "p99_999": 334847
   }
 }
 ```
 
 #### IPC
 
-Service communicating through `IPC` => `npx autocannon -c 100 -d 10 -p 10 http://localhost:3043/tsfastify/ipc`
+Service communicating through `IPC` => `npm run test:performance:ipc`
 
 ```json
 {
@@ -146,90 +153,94 @@ Service communicating through `IPC` => `npx autocannon -c 100 -d 10 -p 10 http:/
   "sampleInt": 1000,
   "pipelining": 10,
   "workers": 0,
-  "duration": 10.04,
+  "duration": 10.1,
   "samples": 10,
-  "start": "2025-05-01T10:29:24.842Z",
-  "finish": "2025-05-01T10:29:34.883Z",
+  "start": "2025-05-01T10:49:26.009Z",
+  "finish": "2025-05-01T10:49:36.112Z",
   "errors": 0,
   "timeouts": 0,
   "mismatches": 0,
   "non2xx": 0,
   "resets": 0,
   "1xx": 0,
-  "2xx": 42269,
+  "2xx": 41237,
   "3xx": 0,
   "4xx": 0,
   "5xx": 0,
-  "statusCodeStats": { "200": { "count": 42269 } },
+  "statusCodeStats": {
+    "200": {
+      "count": 41237
+    }
+  },
   "latency": {
-    "average": 234.13,
-    "mean": 234.13,
-    "stddev": 81.29,
-    "min": 2,
-    "max": 652,
-    "p0_001": 2,
-    "p0_01": 3,
-    "p0_1": 50,
-    "p1": 89,
-    "p2_5": 103,
-    "p10": 147,
-    "p25": 191,
-    "p50": 226,
-    "p75": 261,
-    "p90": 321,
-    "p97_5": 432,
-    "p99": 617,
-    "p99_9": 650,
-    "p99_99": 652,
-    "p99_999": 652,
-    "totalCount": 42269
+    "average": 240.05,
+    "mean": 240.05,
+    "stddev": 73.85,
+    "min": 8,
+    "max": 570,
+    "p0_001": 8,
+    "p0_01": 20,
+    "p0_1": 57,
+    "p1": 93,
+    "p2_5": 104,
+    "p10": 154,
+    "p25": 201,
+    "p50": 232,
+    "p75": 273,
+    "p90": 312,
+    "p97_5": 385,
+    "p99": 552,
+    "p99_9": 559,
+    "p99_99": 570,
+    "p99_999": 570,
+    "totalCount": 41237
   },
   "requests": {
-    "average": 4227.7,
-    "mean": 4227.7,
-    "stddev": 820.42,
-    "min": 2001,
-    "max": 5202,
-    "total": 42269,
-    "p0_001": 2001,
-    "p0_01": 2001,
-    "p0_1": 2001,
-    "p1": 2001,
-    "p2_5": 2001,
-    "p10": 2001,
-    "p25": 4095,
-    "p50": 4395,
-    "p75": 4627,
-    "p90": 4815,
-    "p97_5": 5203,
-    "p99": 5203,
-    "p99_9": 5203,
-    "p99_99": 5203,
-    "p99_999": 5203,
-    "sent": 43269
+    "average": 4124.2,
+    "mean": 4124.2,
+    "stddev": 606.7,
+    "min": 3101,
+    "max": 5079,
+    "total": 41237,
+    "p0_001": 3101,
+    "p0_01": 3101,
+    "p0_1": 3101,
+    "p1": 3101,
+    "p2_5": 3101,
+    "p10": 3101,
+    "p25": 3803,
+    "p50": 4311,
+    "p75": 4483,
+    "p90": 4707,
+    "p97_5": 5079,
+    "p99": 5079,
+    "p99_9": 5079,
+    "p99_99": 5079,
+    "p99_999": 5079,
+    "sent": 42237
   },
   "throughput": {
-    "average": 689036.8,
-    "mean": 689036.8,
-    "stddev": 133694.6,
-    "min": 326163,
-    "max": 847926,
-    "total": 6889847,
-    "p0_001": 326399,
-    "p0_01": 326399,
-    "p0_1": 326399,
-    "p1": 326399,
-    "p2_5": 326399,
-    "p10": 326399,
-    "p25": 667647,
-    "p50": 716287,
-    "p75": 754175,
-    "p90": 784895,
-    "p97_5": 848383,
-    "p99": 848383,
-    "p99_9": 848383,
-    "p99_99": 848383,
-    "p99_999": 848383
+    "average": 672102.4,
+    "mean": 672102.4,
+    "stddev": 98901.49,
+    "min": 505463,
+    "max": 827877,
+    "total": 6721631,
+    "p0_001": 505599,
+    "p0_01": 505599,
+    "p0_1": 505599,
+    "p1": 505599,
+    "p2_5": 505599,
+    "p10": 505599,
+    "p25": 620031,
+    "p50": 702463,
+    "p75": 730623,
+    "p90": 767487,
+    "p97_5": 827903,
+    "p99": 827903,
+    "p99_9": 827903,
+    "p99_99": 827903,
+    "p99_999": 827903
   }
 }
 ```
