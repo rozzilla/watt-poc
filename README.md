@@ -35,6 +35,8 @@ First of all, start `watt` with:
 
 Then, run separately the `npm run test:performance` command, and wait for the results of both the `TCP` and `IPC` routes.
 
+**Bonus point**: [Follow this guideline](https://blog.platformatic.dev/introducing-watt-admin) to run `watt-admin` and have a live overview on your service metrics during the performance tests.
+
 #### TCP
 
 Service communicating through `TCP` => `npm run test:performance:tcp`
