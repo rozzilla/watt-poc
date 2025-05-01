@@ -38,7 +38,7 @@ Then, run separately the `npm run test:performance` command, and wait for the re
 
 #### TCP
 
-Service communicating through `TCP` => `test:performance:tcp`
+Service communicating through `TCP` => `npm run test:performance:tcp`
 
 ```json
 {
