@@ -7,6 +7,12 @@
   "logger": {
     "level": "info"
   },
+  "metrics": {
+    "enabled": true,
+    "endpoint": "/metrics",
+    "hostname": "127.0.0.1",
+    "port": 8008
+  },
   "workers": 2,
   "entrypoint": "composer",
   "web": [
