@@ -16,7 +16,7 @@ The benchmarks will compare service to service communication, where an endpoint 
 
 ### TL;DR
 
-If you want to test directly on your machine, move to the next section. Otherwise, to jump directly into the results, that's the right place!
+To conduct testing on your local machine, please proceed to the following section. Alternatively, if you wish to review the results immediately, the current section contains all of the relevant information.
 
 **Summary**
 
