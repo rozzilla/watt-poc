@@ -7,7 +7,8 @@
     "start": "wattpm start",
     "setup": "npm i && cd ./composer && npm i && cd ../fastify2 && npm i && cd ../fastify3 && npm i && cd ../node3 && npm i && cd ../type1 && npm i && npm run build && cd ../type4 && npm i && npm run build",
     "clean": "rm -rf ./composer/dist && rm -rf ./fastify2/dist && rm -rf ./fastify3/dist && rm -rf ./node3/dist && rm -rf ./type1/dist && rm -rf ./type4/dist",
-    "test:performance": "npm run test:performance:tcp && npm run test:performance:ipc",
+    "metrics": "curl -s http://127.0.0.1:8008/metrics | grep -E 'process_resident_memory_bytes\\{serviceId=\"composer\"\\}|nodejs_heap_size_total_bytes\\{serviceId=\"composer\"\\}|nodejs_heap_size_used_bytes\\{serviceId=\"composer\"\\}|nodejs_heap_space_size_used_bytes\\{space=\"new\",serviceId=\"composer\"\\}|nodejs_heap_space_size_used_bytes\\{space=\"old\",serviceId=\"composer\"\\}|thread_cpu_percent_usage\\{serviceId=\"composer\"\\}|nodejs_eventloop_utilization\\{serviceId=\"composer\"\\}' | sed -E 's/\\{serviceId=\"composer\"\\}//g; s/\\{space=\"([^\"]+)\",serviceId=\"composer\"\\}/\\{space=\"\\1\"\\}/g' | awk '{print $1, $2}'",
+    "test:performance": "npm run test:performance:tcp && npm run metrics && npm run test:performance:ipc && npm run metrics",
     "test:performance:tcp": "autocannon -j -c 100 -d 10 -p 10 http://localhost:3043/tsfastify/tcp | jq '.'",
     "test:performance:ipc": "autocannon -j -c 100 -d 10 -p 10 http://localhost:3043/tsfastify/ipc | jq '.'"
   },

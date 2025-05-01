@@ -20,13 +20,17 @@ To conduct testing on your local machine, please proceed to the following sectio
 
 **Summary**
 
-- 2xx => `7775#` on `TCP` | `41237#` on `IPC`
-- 5xx => `2333#` on `TCP` | `0#` on `IPC`
-- latency.average => `818ms` on `TCP` | `240ms` on `IPC`
-- latency.p90 => `2173ms` on `TCP` | `312ms` on `IPC`
-- latency.p99 => `7969ms` on `TCP` | `552ms` on `IPC`
-- requests.average => `1010/s` on `TCP` | `4124/s` on `IPC`
-- throughput.average => `191Kb` on `TCP` | `672Kb` on `IPC`
+- 2xx => `7436#` on `TCP` | `40749#` on `IPC`
+- 5xx => `1269#` on `TCP` | `0#` on `IPC`
+- latency.average => `936ms` on `TCP` | `241ms` on `IPC`
+- latency.p90 => `1459ms` on `TCP` | `349ms` on `IPC`
+- latency.p99 => `8162ms` on `TCP` | `496ms` on `IPC`
+- requests.average => `870/s` on `TCP` | `4075/s` on `IPC`
+- throughput.average => `156Kb` on `TCP` | `664Kb` on `IPC`
+- Heap size total => `445Mb` on `TCP` | `215Mb` on `IPC`
+- Heap size used => `127Mb` on `TCP` | `172Mb` on `IPC`
+- ELU => `100%` on `TCP` | `74%` on `IPC`
+- CPU => `78%` on `TCP` | `52%` on `IPC`
 
 ### Start
 
@@ -48,99 +52,111 @@ Service communicating through `TCP` => `npm run test:performance:tcp`
   "sampleInt": 1000,
   "pipelining": 10,
   "workers": 0,
-  "duration": 10.02,
+  "duration": 10.03,
   "samples": 10,
-  "start": "2025-05-01T10:49:15.523Z",
-  "finish": "2025-05-01T10:49:25.544Z",
-  "errors": 13,
+  "start": "2025-05-01T15:34:08.050Z",
+  "finish": "2025-05-01T15:34:18.083Z",
+  "errors": 0,
   "timeouts": 0,
   "mismatches": 0,
-  "non2xx": 2333,
+  "non2xx": 1269,
   "resets": 0,
   "1xx": 0,
-  "2xx": 7775,
+  "2xx": 7436,
   "3xx": 0,
   "4xx": 0,
-  "5xx": 2333,
+  "5xx": 1269,
   "statusCodeStats": {
     "200": {
-      "count": 7775
+      "count": 7436
     },
     "500": {
-      "count": 2333
+      "count": 1269
     }
   },
   "latency": {
-    "average": 818.2,
-    "mean": 818.2,
-    "stddev": 1839.54,
-    "min": 11,
-    "max": 9521,
-    "p0_001": 11,
-    "p0_01": 11,
-    "p0_1": 13,
-    "p1": 19,
-    "p2_5": 29,
-    "p10": 45,
-    "p25": 66,
-    "p50": 132,
-    "p75": 360,
-    "p90": 2173,
-    "p97_5": 7875,
-    "p99": 7969,
-    "p99_9": 8383,
-    "p99_99": 8653,
-    "p99_999": 9521,
-    "totalCount": 10108
+    "average": 936.22,
+    "mean": 936.22,
+    "stddev": 1484.54,
+    "min": 181,
+    "max": 9197,
+    "p0_001": 181,
+    "p0_01": 181,
+    "p0_1": 195,
+    "p1": 316,
+    "p2_5": 320,
+    "p10": 420,
+    "p25": 478,
+    "p50": 587,
+    "p75": 692,
+    "p90": 1459,
+    "p97_5": 8029,
+    "p99": 8162,
+    "p99_9": 8173,
+    "p99_99": 9197,
+    "p99_999": 9197,
+    "totalCount": 8705
   },
   "requests": {
-    "average": 1010.8,
-    "mean": 1010.8,
-    "stddev": 221.01,
-    "min": 591,
-    "max": 1281,
-    "total": 10108,
-    "p0_001": 591,
-    "p0_01": 591,
-    "p0_1": 591,
-    "p1": 591,
-    "p2_5": 591,
-    "p10": 591,
-    "p25": 960,
-    "p50": 1047,
-    "p75": 1202,
-    "p90": 1233,
-    "p97_5": 1281,
-    "p99": 1281,
-    "p99_9": 1281,
-    "p99_99": 1281,
-    "p99_999": 1281,
-    "sent": 11238
+    "average": 870.5,
+    "mean": 870.5,
+    "stddev": 313.22,
+    "min": 399,
+    "max": 1541,
+    "total": 8705,
+    "p0_001": 399,
+    "p0_01": 399,
+    "p0_1": 399,
+    "p1": 399,
+    "p2_5": 399,
+    "p10": 399,
+    "p25": 642,
+    "p50": 906,
+    "p75": 1032,
+    "p90": 1112,
+    "p97_5": 1541,
+    "p99": 1541,
+    "p99_9": 1541,
+    "p99_99": 1541,
+    "p99_999": 1541,
+    "sent": 9705
   },
   "throughput": {
-    "average": 191692.8,
-    "mean": 191692.8,
-    "stddev": 63243.66,
-    "min": 98793,
-    "max": 334795,
-    "total": 1917095,
-    "p0_001": 98815,
-    "p0_01": 98815,
-    "p0_1": 98815,
-    "p1": 98815,
-    "p2_5": 98815,
-    "p10": 98815,
-    "p25": 165887,
-    "p50": 180479,
-    "p75": 219135,
-    "p90": 232447,
-    "p97_5": 334847,
-    "p99": 334847,
-    "p99_9": 334847,
-    "p99_99": 334847,
-    "p99_999": 334847
+    "average": 156684.8,
+    "mean": 156684.8,
+    "stddev": 58696.25,
+    "min": 87691,
+    "max": 301035,
+    "total": 1566806,
+    "p0_001": 87743,
+    "p0_01": 87743,
+    "p0_1": 87743,
+    "p1": 87743,
+    "p2_5": 87743,
+    "p10": 87743,
+    "p25": 107839,
+    "p50": 150015,
+    "p75": 182015,
+    "p90": 190847,
+    "p97_5": 301055,
+    "p99": 301055,
+    "p99_9": 301055,
+    "p99_99": 301055,
+    "p99_999": 301055
   }
 }
+```
+
+Metrics output:
+
+```shell
+process_resident_memory_bytes 1405665280
+nodejs_heap_size_total_bytes 445775872
+nodejs_heap_size_used_bytes 127305552
+nodejs_heap_space_size_used_bytes{space="new"} 9993448
+nodejs_heap_space_size_used_bytes{space="old"} 104161192
+nodejs_eventloop_utilization 1
+thread_cpu_percent_usage 78.33070063356756
 ```
 
 #### IPC
@@ -154,94 +170,106 @@ Service communicating through `IPC` => `npm run test:performance:ipc`
   "sampleInt": 1000,
   "pipelining": 10,
   "workers": 0,
-  "duration": 10.1,
+  "duration": 10.04,
   "samples": 10,
-  "start": "2025-05-01T10:49:26.009Z",
-  "finish": "2025-05-01T10:49:36.112Z",
+  "start": "2025-05-01T15:34:18.905Z",
+  "finish": "2025-05-01T15:34:28.940Z",
   "errors": 0,
   "timeouts": 0,
   "mismatches": 0,
   "non2xx": 0,
   "resets": 0,
   "1xx": 0,
-  "2xx": 41237,
+  "2xx": 40749,
   "3xx": 0,
   "4xx": 0,
   "5xx": 0,
   "statusCodeStats": {
     "200": {
-      "count": 41237
+      "count": 40749
     }
   },
   "latency": {
-    "average": 240.05,
-    "mean": 240.05,
-    "stddev": 73.85,
+    "average": 241.38,
+    "mean": 241.38,
+    "stddev": 74.59,
     "min": 8,
-    "max": 570,
+    "max": 517,
     "p0_001": 8,
-    "p0_01": 20,
-    "p0_1": 57,
-    "p1": 93,
-    "p2_5": 104,
-    "p10": 154,
-    "p25": 201,
-    "p50": 232,
-    "p75": 273,
-    "p90": 312,
-    "p97_5": 385,
-    "p99": 552,
-    "p99_9": 559,
-    "p99_99": 570,
-    "p99_999": 570,
-    "totalCount": 41237
+    "p0_01": 9,
+    "p0_1": 55,
+    "p1": 88,
+    "p2_5": 105,
+    "p10": 169,
+    "p25": 197,
+    "p50": 225,
+    "p75": 274,
+    "p90": 349,
+    "p97_5": 422,
+    "p99": 496,
+    "p99_9": 515,
+    "p99_99": 517,
+    "p99_999": 517,
+    "totalCount": 40749
   },
   "requests": {
-    "average": 4124.2,
-    "mean": 4124.2,
-    "stddev": 606.7,
-    "min": 3101,
-    "max": 5079,
-    "total": 41237,
-    "p0_001": 3101,
-    "p0_01": 3101,
-    "p0_1": 3101,
-    "p1": 3101,
-    "p2_5": 3101,
-    "p10": 3101,
-    "p25": 3803,
-    "p50": 4311,
-    "p75": 4483,
-    "p90": 4707,
-    "p97_5": 5079,
-    "p99": 5079,
-    "p99_9": 5079,
-    "p99_99": 5079,
-    "p99_999": 5079,
-    "sent": 42237
+    "average": 4075.7,
+    "mean": 4075.7,
+    "stddev": 692.18,
+    "min": 2351,
+    "max": 4721,
+    "total": 40749,
+    "p0_001": 2351,
+    "p0_01": 2351,
+    "p0_1": 2351,
+    "p1": 2351,
+    "p2_5": 2351,
+    "p10": 2351,
+    "p25": 3941,
+    "p50": 4251,
+    "p75": 4535,
+    "p90": 4687,
+    "p97_5": 4723,
+    "p99": 4723,
+    "p99_9": 4723,
+    "p99_99": 4723,
+    "p99_999": 4723,
+    "sent": 41749
   },
   "throughput": {
-    "average": 672102.4,
-    "mean": 672102.4,
-    "stddev": 98901.49,
-    "min": 505463,
-    "max": 827877,
-    "total": 6721631,
-    "p0_001": 505599,
-    "p0_01": 505599,
-    "p0_1": 505599,
-    "p1": 505599,
-    "p2_5": 505599,
-    "p10": 505599,
-    "p25": 620031,
-    "p50": 702463,
-    "p75": 730623,
-    "p90": 767487,
-    "p97_5": 827903,
-    "p99": 827903,
-    "p99_9": 827903,
-    "p99_99": 827903,
-    "p99_999": 827903
+    "average": 664204.81,
+    "mean": 664204.81,
+    "stddev": 112777.24,
+    "min": 383213,
+    "max": 769523,
+    "total": 6642087,
+    "p0_001": 383231,
+    "p0_01": 383231,
+    "p0_1": 383231,
+    "p1": 383231,
+    "p2_5": 383231,
+    "p10": 383231,
+    "p25": 642559,
+    "p50": 693247,
+    "p75": 738815,
+    "p90": 763903,
+    "p97_5": 769535,
+    "p99": 769535,
+    "p99_9": 769535,
+    "p99_99": 769535,
+    "p99_999": 769535
   }
 }
+```
+
+Metrics output:
+
+```shell
+process_resident_memory_bytes 1479540736
+nodejs_heap_size_total_bytes 215433216
+nodejs_heap_size_used_bytes 172630056
+nodejs_heap_space_size_used_bytes{space="new"} 12066392
+nodejs_heap_space_size_used_bytes{space="old"} 147681888
+nodejs_eventloop_utilization 0.7428378495133832
+thread_cpu_percent_usage 52.28364997175286
 ```
