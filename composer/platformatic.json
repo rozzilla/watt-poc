@@ -12,6 +12,9 @@
         "id": "fastify3",
         "proxy": {
           "prefix": "/tsfastify"
+        },
+        "openapi": {
+          "url": "/documentation/json"
         }
       },
       {
