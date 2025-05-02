@@ -7,6 +7,9 @@
   "logger": {
     "level": "info"
   },
+  "health": {
+    "maxYoungGeneration": 134217728
+  },
   "metrics": {
     "enabled": true,
     "endpoint": "/metrics",

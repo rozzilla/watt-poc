@@ -6,11 +6,10 @@
     "build": "wattpm build",
     "start": "wattpm start",
     "setup": "npm i && cd ./composer && npm i && cd ../fastify2 && npm i && cd ../fastify3 && npm i && cd ../node3 && npm i && cd ../type1 && npm i && npm run build && cd ../type4 && npm i && npm run build",
-    "clean": "rm -rf ./composer/dist && rm -rf ./fastify2/dist && rm -rf ./fastify3/dist && rm -rf ./node3/dist && rm -rf ./type1/dist && rm -rf ./type4/dist",
-    "metrics": "curl -s http://127.0.0.1:8008/metrics | grep -E 'process_resident_memory_bytes\\{serviceId=\"composer\"\\}|nodejs_heap_size_total_bytes\\{serviceId=\"composer\"\\}|nodejs_heap_size_used_bytes\\{serviceId=\"composer\"\\}|nodejs_heap_space_size_used_bytes\\{space=\"new\",serviceId=\"composer\"\\}|nodejs_heap_space_size_used_bytes\\{space=\"old\",serviceId=\"composer\"\\}|thread_cpu_percent_usage\\{serviceId=\"composer\"\\}|nodejs_eventloop_utilization\\{serviceId=\"composer\"\\}' | sed -E 's/\\{serviceId=\"composer\"\\}//g; s/\\{space=\"([^\"]+)\",serviceId=\"composer\"\\}/\\{space=\"\\1\"\\}/g' | awk '{print $1, $2}'",
-    "test:performance": "npm run test:performance:tcp && npm run metrics && npm run test:performance:ipc && npm run metrics",
-    "test:performance:tcp": "autocannon -j -c 100 -d 10 -p 10 http://localhost:3043/tsfastify/tcp | jq '.'",
-    "test:performance:ipc": "autocannon -j -c 100 -d 10 -p 10 http://localhost:3043/tsfastify/ipc | jq '.'"
+    "clean": "rm -rf ./composer/dist && rm -rf ./fastify2/dist && rm -rf ./fastify3/dist && rm -rf ./node3/dist && rm -rf ./type1/dist && rm -rf ./type4/dist && rm -rf ./logs/*.log",
+    "metrics": "curl -s http://127.0.0.1:8008/metrics | grep -E 'process_resident_memory_bytes|nodejs_heap_size_total_bytes|nodejs_heap_size_used_bytes|nodejs_heap_space_size_used_bytes|thread_cpu_percent_usage|nodejs_eventloop_utilization' | grep 'serviceId=\"composer\"' | sed -E 's/{serviceId=\"composer\"}//g; s/{space=\"([^\"]+)\",serviceId=\"composer\"}/{space=\"\\1\"}/g' | awk '{if ($1 ~ /bytes/) {printf \"%s %.0f MB\\n\", $1, $2/1024/1024} else if ($1 ~ /thread_cpu_percent_usage/) {printf \"%s %.2f%%\\n\", $1, $2} else if ($1 ~ /nodejs_eventloop_utilization/) {printf \"%s %.2f%%\\n\", $1, $2*100} else {print $1, $2}}'",
+    "test:performance:tcp": "autocannon -j -c 100 -d 10 -p 10 http://localhost:3043/tsfastify/tcp | jq '.' >> logs/tcp.log && npm run metrics >> logs/tcp.log && code logs/tcp.log",
+    "test:performance:ipc": "autocannon -j -c 100 -d 10 -p 10 http://localhost:3043/tsfastify/ipc | jq '.' >> logs/ipc.log && npm run metrics >> logs/ipc.log && code logs/ipc.log"
   },
   "dependencies": {
     "@platformatic/composer": "^2.62.1",
