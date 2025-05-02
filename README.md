@@ -44,7 +44,7 @@ Then, stop the main `watt` process, start it again with `npm run start > logs/tm
 
 #### TCP
 
-Output performance test
+Output TCP benchmarks:
 
 ```json
 {
@@ -148,7 +148,7 @@ Output performance test
 }
 ```
 
-Metrics output:
+Output TCP metrics:
 
 ```shell
 process_resident_memory 1729 MB
@@ -162,7 +162,7 @@ thread_cpu_percent_usage 91.31%
 
 #### IPC
 
-Output performance test
+Output IPC benchmarks:
 
 ```json
 {
@@ -263,7 +263,7 @@ Output performance test
 }
 ```
 
-Metrics output:
+Output IPC metrics:
 
 ```shell
 process_resident_memory 2016 MB
