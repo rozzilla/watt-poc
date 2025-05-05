@@ -10,6 +10,28 @@ Run the following commands:
 - check `IPC` connection with `curl http://localhost:3043/tsfastify/ipc`
 - check `TCP` connection with `curl http://localhost:3043/tsfastify/tcp`
 
+## Features
+
+### IPC service-to-service communication
+
+Rather than communicate through TCP, with `watt` you can leverage IPC connections through Unix Sockets (see the [benchmarks section](#benchmarks) to analyze the performance improvements).
+
+### Multithreading
+
+Allowing your `watt` services to run with multiple threads is as easy as changing the `workers` parameter on the main `./watt.json`
+
+### Metrics
+
+When you run `watt`, you can very easily enable Open Telemetry metrics to monitor your whole system in real time. With [`watt-admin`](https://blog.platformatic.dev/introducing-watt-admin), you can see a dashboard showing real-time metrics.
+
+### API Gateway
+
+Leveraging `@platformatic/composer`, you can define a gateway entry point for your APIs through a simple JSON schema (see `./composer/platformatic.json`).
+
+### Open API compatibility
+
+Through `watt,` you can leverage the `openapi.url` property to automatically expose the service's Open API definition.
+
 ## Benchmarks
 
 The benchmarks will compare service-to-service communication, where an endpoint (from the `tsfastify` service) will take care of getting a response from 4 other services (`fastify2`, `node3`, `type1`, `type4`). This number of requests is more than usual in a micro-service or a service-oriented architecture, and thanks to `watt`, we can compare the performance differences between `IPC` (exposed through the `/ipc` endpoint) versus `TCP` (on the `/tcp` route).
@@ -39,8 +61,6 @@ To conduct testing on your local machine, please proceed to the following sectio
 First of all, start `watt` with `npm run start > logs/tmp.log`, and run `npm run test:performance:tcp` on a separate shell.
 
 Then, stop the main `watt` process, start it again with `npm run start > logs/tmp.log`, followed by `npm run test:performance:ipc` command. Once the last command is completed, you'll be able to compare `TCP` and `IPC` benchmarks.
-
-**Bonus point**: [Follow this guideline](https://blog.platformatic.dev/introducing-watt-admin) to run `watt-admin` and have a live overview on your service metrics during the performance tests.
 
 #### TCP
 
