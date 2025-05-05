@@ -1,5 +1,15 @@
 {
   "$schema": "https://schemas.platformatic.dev/@platformatic/composer/2.62.1.json",
+  "server": {
+    "http2": true,
+    "https": {
+      "allowHTTP1": true,
+      "requestCert": false,
+      "rejectUnauthorized": false,
+      "key": { "path": "server.key" },
+      "cert": { "path": "server.crt" }
+    }
+  },
   "composer": {
     "services": [
       {

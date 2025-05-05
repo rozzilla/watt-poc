@@ -78,10 +78,10 @@ export default async function (fastify: FastifyInstance) {
     },
     async () => ({
       success: await checkAllServices([
-        request("http://127.0.0.1:3043/fastify/live"),
-        request("http://127.0.0.1:3043/node"),
-        request("http://127.0.0.1:3043/typescript"),
-        request("http://127.0.0.1:3043/ts2"),
+        request("https://127.0.0.1:3043/fastify/live"),
+        request("https://127.0.0.1:3043/node"),
+        request("https://127.0.0.1:3043/typescript"),
+        request("https://127.0.0.1:3043/ts2"),
       ]),
     })
   );
