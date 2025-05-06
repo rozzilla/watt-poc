@@ -10,6 +10,8 @@ Run the following commands:
 - check `IPC` connection with `curl http://localhost:3043/tsfastify/ipc`
 - check `TCP` connection with `curl http://localhost:3043/tsfastify/tcp`
 
+To check `SSL` connection you should run `npm run start:ssl` and then `curl -k https://localhost:3043/tsfastify/ssl`.
+
 ## Features
 
 ### IPC service-to-service communication
@@ -42,25 +44,27 @@ To conduct testing on your local machine, please proceed to the following sectio
 
 **Summary**
 
-- 2xx => `8106#` on `TCP` | `31580#` on `IPC`
-- 5xx => `1412#` on `TCP` | `0#` on `IPC`
-- latency.average => `901ms` on `TCP` | `312ms` on `IPC`
-- latency.p90 => `2149ms` on `TCP` | `503ms` on `IPC`
-- latency.p99 => `7961ms` on `TCP` | `599ms` on `IPC`
-- requests.average => `951/s` on `TCP` | `3158/s` on `IPC`
-- throughput.average => `171Kb` on `TCP` | `514Kb` on `IPC`
-- Heap size total => `444Mb` on `TCP` | `258Mb` on `IPC`
-- Heap size used => `356Mb` on `TCP` | `107Mb` on `IPC`
-- Heap space new => `49Mb` on `TCP` | `44Mb` on `IPC`
-- Heap space old => `293Mb` on `TCP` | `51Mb` on `IPC`
-- ELU => `100%` on `TCP` | `64%` on `IPC`
-- CPU => `91%` on `TCP` | `55%` on `IPC`
+- 2xx => `4995#` (`SSL`) | `8223#` (`TCP`) | `40550#` (`IPC`)
+- latency.average => `1617ms` (`SSL`) | `808ms` (`TCP`) | `243ms` (`IPC`)
+- latency.p50 => `832ms` (`SSL`) | `181ms` (`TCP`) | `503ms` (`IPC`)
+- latency.p90 => `5380ms` (`SSL`) | `1227ms` (`TCP`) | `188ms` (`IPC`)
+- latency.p99 => `5397ms` (`SSL`) | `8076ms` (`TCP`) | `974ms` (`IPC`)
+- requests.average => `519/s` (`SSL`) | `1044/s` (`TCP`) | `4055/s` (`IPC`)
+- throughput.average => `87Kb` (`SSL`) | `194Kb` (`TCP`) | `660Kb` (`IPC`)
+- Heap size total => `661Mb` (`SSL`) | `440Mb` (`TCP`) | `282Mb` (`IPC`)
+- Heap size used => `503Mb` (`SSL`) | `239Mb` (`TCP`) | `99Mb` (`IPC`)
+- Heap space new => `39Mb` (`SSL`) | `45Mb` (`TCP`) | `37Mb` (`IPC`)
+- Heap space old => `446Mb` (`SSL`) | `179Mb` (`TCP`) | `48Mb` (`IPC`)
+- ELU => `100%` (`SSL`) | `89.77%` (`TCP`) | `2.36%` (`IPC`)
+- CPU => `93.66%` (`SSL`) | `66.15%` (`TCP`) | `60.80%` (`IPC`)
 
 ### Start
 
-First of all, start `watt` with `npm run start > logs/tmp.log`, and run `npm run test:performance:tcp` on a separate shell.
+First of all, start `watt` with `npm run start > logs/tmp.log`, and after some time run `npm run test:performance:tcp` on a separate shell.
 
 Then, stop the main `watt` process, start it again with `npm run start > logs/tmp.log`, followed by `npm run test:performance:ipc` command. Once the last command is completed, you'll be able to compare `TCP` and `IPC` benchmarks.
+
+To run the benchmark for the `/ssl` endpoint, run first `npm run start:ssl > logs/tmp.log`, then the `npm run test:performance:ssl` command.
 
 #### TCP
 
@@ -73,97 +77,97 @@ Output TCP benchmarks:
   "sampleInt": 1000,
   "pipelining": 10,
   "workers": 0,
-  "duration": 10.03,
+  "duration": 10.02,
   "samples": 10,
-  "start": "2025-05-02T14:50:39.485Z",
-  "finish": "2025-05-02T14:50:49.513Z",
+  "start": "2025-05-06T13:23:50.953Z",
+  "finish": "2025-05-06T13:24:00.977Z",
   "errors": 0,
   "timeouts": 0,
   "mismatches": 0,
-  "non2xx": 1412,
+  "non2xx": 2217,
   "resets": 0,
   "1xx": 0,
-  "2xx": 8106,
+  "2xx": 8223,
   "3xx": 0,
   "4xx": 0,
-  "5xx": 1412,
+  "5xx": 2217,
   "statusCodeStats": {
     "200": {
-      "count": 8106
+      "count": 8223
     },
     "500": {
-      "count": 1412
+      "count": 2217
     }
   },
   "latency": {
-    "average": 901.13,
-    "mean": 901.13,
-    "stddev": 1902.1,
-    "min": 30,
-    "max": 9363,
-    "p0_001": 30,
-    "p0_01": 30,
-    "p0_1": 35,
-    "p1": 47,
-    "p2_5": 60,
-    "p10": 86,
-    "p25": 110,
-    "p50": 201,
-    "p75": 471,
-    "p90": 2149,
-    "p97_5": 7932,
-    "p99": 7961,
-    "p99_9": 8802,
-    "p99_99": 9363,
-    "p99_999": 9363,
-    "totalCount": 9518
+    "average": 808.35,
+    "mean": 808.35,
+    "stddev": 1889.61,
+    "min": 34,
+    "max": 8110,
+    "p0_001": 34,
+    "p0_01": 35,
+    "p0_1": 48,
+    "p1": 63,
+    "p2_5": 65,
+    "p10": 82,
+    "p25": 100,
+    "p50": 181,
+    "p75": 409,
+    "p90": 1227,
+    "p97_5": 7964,
+    "p99": 8076,
+    "p99_9": 8095,
+    "p99_99": 8109,
+    "p99_999": 8110,
+    "totalCount": 10440
   },
   "requests": {
-    "average": 951.8,
-    "mean": 951.8,
-    "stddev": 370.44,
-    "min": 338,
-    "max": 1577,
-    "total": 9518,
-    "p0_001": 338,
-    "p0_01": 338,
-    "p0_1": 338,
-    "p1": 338,
-    "p2_5": 338,
-    "p10": 338,
-    "p25": 660,
-    "p50": 927,
-    "p75": 1277,
-    "p90": 1328,
-    "p97_5": 1577,
-    "p99": 1577,
-    "p99_9": 1577,
-    "p99_99": 1577,
-    "p99_999": 1577,
-    "sent": 10518
+    "average": 1044,
+    "mean": 1044,
+    "stddev": 252.98,
+    "min": 608,
+    "max": 1342,
+    "total": 10440,
+    "p0_001": 608,
+    "p0_01": 608,
+    "p0_1": 608,
+    "p1": 608,
+    "p2_5": 608,
+    "p10": 608,
+    "p25": 838,
+    "p50": 1006,
+    "p75": 1287,
+    "p90": 1290,
+    "p97_5": 1342,
+    "p99": 1342,
+    "p99_9": 1342,
+    "p99_99": 1342,
+    "p99_999": 1342,
+    "sent": 11440
   },
   "throughput": {
-    "average": 171731.2,
-    "mean": 171731.2,
-    "stddev": 64742.54,
-    "min": 89474,
-    "max": 290899,
-    "total": 1717455,
-    "p0_001": 89535,
-    "p0_01": 89535,
-    "p0_1": 89535,
-    "p1": 89535,
-    "p2_5": 89535,
-    "p10": 89535,
-    "p25": 108671,
-    "p50": 153215,
-    "p75": 222591,
-    "p90": 236287,
-    "p97_5": 291071,
-    "p99": 291071,
-    "p99_9": 291071,
-    "p99_99": 291071,
-    "p99_999": 291071
+    "average": 194387.2,
+    "mean": 194387.2,
+    "stddev": 67071.75,
+    "min": 104756,
+    "max": 331221,
+    "total": 1943921,
+    "p0_001": 104767,
+    "p0_01": 104767,
+    "p0_1": 104767,
+    "p1": 104767,
+    "p2_5": 104767,
+    "p10": 104767,
+    "p25": 143103,
+    "p50": 170367,
+    "p75": 220415,
+    "p90": 278015,
+    "p97_5": 331263,
+    "p99": 331263,
+    "p99_9": 331263,
+    "p99_99": 331263,
+    "p99_999": 331263
   }
 }
 ```
@@ -171,13 +175,13 @@ Output TCP benchmarks:
 Output TCP metrics:
 
 ```shell
-process_resident_memory 1729 MB
-nodejs_heap_size_total 444 MB
-nodejs_heap_size_used 356 MB
-nodejs_heap_space_size_used_new 49 MB
-nodejs_heap_space_size_used_old 293 MB
-nodejs_eventloop_utilization 100.00%
-thread_cpu_percent_usage 91.31%
+process_resident_memory 1539 MB
+nodejs_heap_size_total 440 MB
+nodejs_heap_size_used 239 MB
+nodejs_heap_space_size_used_new 45 MB
+nodejs_heap_space_size_used_old 179 MB
+nodejs_eventloop_utilization 89.77%
+thread_cpu_percent_usage 66.15%
 ```
 
 #### IPC
@@ -193,92 +197,92 @@ Output IPC benchmarks:
   "workers": 0,
   "duration": 10.04,
   "samples": 10,
-  "start": "2025-05-02T14:51:34.471Z",
-  "finish": "2025-05-02T14:51:44.507Z",
+  "start": "2025-05-06T13:33:35.435Z",
+  "finish": "2025-05-06T13:33:45.472Z",
   "errors": 0,
   "timeouts": 0,
   "mismatches": 0,
   "non2xx": 0,
   "resets": 0,
   "1xx": 0,
-  "2xx": 31580,
+  "2xx": 40550,
   "3xx": 0,
   "4xx": 0,
   "5xx": 0,
   "statusCodeStats": {
     "200": {
-      "count": 31580
+      "count": 40550
     }
   },
   "latency": {
-    "average": 312.38,
-    "mean": 312.38,
-    "stddev": 124.71,
-    "min": 5,
-    "max": 842,
-    "p0_001": 5,
-    "p0_01": 15,
-    "p0_1": 25,
-    "p1": 68,
-    "p2_5": 107,
-    "p10": 163,
-    "p25": 219,
-    "p50": 299,
-    "p75": 380,
-    "p90": 503,
-    "p97_5": 580,
-    "p99": 599,
-    "p99_9": 630,
-    "p99_99": 842,
-    "p99_999": 842,
-    "totalCount": 31580
+    "average": 243.06,
+    "mean": 243.06,
+    "stddev": 174.41,
+    "min": 4,
+    "max": 1037,
+    "p0_001": 4,
+    "p0_01": 20,
+    "p0_1": 35,
+    "p1": 72,
+    "p2_5": 90,
+    "p10": 120,
+    "p25": 154,
+    "p50": 188,
+    "p75": 243,
+    "p90": 455,
+    "p97_5": 835,
+    "p99": 974,
+    "p99_9": 1026,
+    "p99_99": 1035,
+    "p99_999": 1037,
+    "totalCount": 40550
   },
   "requests": {
-    "average": 3158.4,
-    "mean": 3158.4,
-    "stddev": 950.16,
-    "min": 1511,
-    "max": 4987,
-    "total": 31580,
-    "p0_001": 1511,
-    "p0_01": 1511,
-    "p0_1": 1511,
-    "p1": 1511,
-    "p2_5": 1511,
-    "p10": 1511,
-    "p25": 2657,
-    "p50": 2849,
-    "p75": 3495,
-    "p90": 4547,
-    "p97_5": 4987,
-    "p99": 4987,
-    "p99_9": 4987,
-    "p99_99": 4987,
-    "p99_999": 4987,
-    "sent": 32580
+    "average": 4055.6,
+    "mean": 4055.6,
+    "stddev": 2066.03,
+    "min": 842,
+    "max": 6580,
+    "total": 40550,
+    "p0_001": 842,
+    "p0_01": 842,
+    "p0_1": 842,
+    "p1": 842,
+    "p2_5": 842,
+    "p10": 842,
+    "p25": 2199,
+    "p50": 4167,
+    "p75": 5727,
+    "p90": 6323,
+    "p97_5": 6583,
+    "p99": 6583,
+    "p99_9": 6583,
+    "p99_99": 6583,
+    "p99_999": 6583,
+    "sent": 41550
   },
   "throughput": {
-    "average": 514732.8,
-    "mean": 514732.8,
-    "stddev": 154847.22,
-    "min": 246293,
-    "max": 812881,
-    "total": 5147540,
-    "p0_001": 246399,
-    "p0_01": 246399,
-    "p0_1": 246399,
-    "p1": 246399,
-    "p2_5": 246399,
-    "p10": 246399,
-    "p25": 433151,
-    "p50": 464639,
-    "p75": 569855,
-    "p90": 740863,
-    "p97_5": 813055,
-    "p99": 813055,
-    "p99_9": 813055,
-    "p99_99": 813055,
-    "p99_999": 813055
+    "average": 660992,
+    "mean": 660992,
+    "stddev": 336693.78,
+    "min": 137246,
+    "max": 1072540,
+    "total": 6609650,
+    "p0_001": 137343,
+    "p0_01": 137343,
+    "p0_1": 137343,
+    "p1": 137343,
+    "p2_5": 137343,
+    "p10": 137343,
+    "p25": 358655,
+    "p50": 679423,
+    "p75": 933375,
+    "p90": 1030655,
+    "p97_5": 1073151,
+    "p99": 1073151,
+    "p99_9": 1073151,
+    "p99_99": 1073151,
+    "p99_999": 1073151
   }
 }
 ```
@@ -286,11 +290,129 @@ Output IPC benchmarks:
 Output IPC metrics:
 
 ```shell
-process_resident_memory 2016 MB
-nodejs_heap_size_total 258 MB
-nodejs_heap_size_used 107 MB
-nodejs_heap_space_size_used_new 44 MB
-nodejs_heap_space_size_used_old 51 MB
-nodejs_eventloop_utilization 63.98%
-thread_cpu_percent_usage 54.90%
+process_resident_memory 2287 MB
+nodejs_heap_size_total 282 MB
+nodejs_heap_size_used 99 MB
+nodejs_heap_space_size_used_new 37 MB
+nodejs_heap_space_size_used_old 48 MB
+nodejs_eventloop_utilization 2.36%
+thread_cpu_percent_usage 60.80%
+```
+
+#### SSL
+
+Output SSL benchmarks:
+
+```json
+{
+  "url": "https://localhost:3043/tsfastify/ssl",
+  "connections": 100,
+  "sampleInt": 1000,
+  "pipelining": 10,
+  "workers": 0,
+  "duration": 10.06,
+  "samples": 10,
+  "start": "2025-05-06T13:25:22.552Z",
+  "finish": "2025-05-06T13:25:32.612Z",
+  "errors": 0,
+  "timeouts": 0,
+  "mismatches": 0,
+  "non2xx": 200,
+  "resets": 0,
+  "1xx": 0,
+  "2xx": 4995,
+  "3xx": 0,
+  "4xx": 0,
+  "5xx": 200,
+  "statusCodeStats": {
+    "200": {
+      "count": 4995
+    },
+    "500": {
+      "count": 200
+    }
+  },
+  "latency": {
+    "average": 1617.81,
+    "mean": 1617.81,
+    "stddev": 1743.05,
+    "min": 723,
+    "max": 8039,
+    "p0_001": 723,
+    "p0_01": 723,
+    "p0_1": 723,
+    "p1": 723,
+    "p2_5": 724,
+    "p10": 730,
+    "p25": 749,
+    "p50": 832,
+    "p75": 928,
+    "p90": 5380,
+    "p97_5": 5389,
+    "p99": 5397,
+    "p99_9": 5540,
+    "p99_99": 8039,
+    "p99_999": 8039,
+    "totalCount": 5195
+  },
+  "requests": {
+    "average": 519.5,
+    "mean": 519.5,
+    "stddev": 541.11,
+    "min": 118,
+    "max": 1619,
+    "total": 5195,
+    "p0_001": 0,
+    "p0_01": 0,
+    "p0_1": 0,
+    "p1": 0,
+    "p2_5": 0,
+    "p10": 0,
+    "p25": 0,
+    "p50": 118,
+    "p75": 883,
+    "p90": 893,
+    "p97_5": 1619,
+    "p99": 1619,
+    "p99_9": 1619,
+    "p99_99": 1619,
+    "p99_999": 1619,
+    "sent": 6195
+  },
+  "throughput": {
+    "average": 87064,
+    "mean": 87064,
+    "stddev": 87941.44,
+    "min": 33394,
+    "max": 264017,
+    "total": 870652,
+    "p0_001": 0,
+    "p0_01": 0,
+    "p0_1": 0,
+    "p1": 0,
+    "p2_5": 0,
+    "p10": 0,
+    "p25": 0,
+    "p50": 33407,
+    "p75": 148095,
+    "p90": 151039,
+    "p97_5": 264191,
+    "p99": 264191,
+    "p99_9": 264191,
+    "p99_99": 264191,
+    "p99_999": 264191
+  }
+}
+```
+
+Output SSL metrics:
+
+```shell
+process_resident_memory 2152 MB
+nodejs_heap_size_total 661 MB
+nodejs_heap_size_used 503 MB
+nodejs_heap_space_size_used_new 39 MB
+nodejs_heap_space_size_used_old 446 MB
+nodejs_eventloop_utilization 100.00%
+thread_cpu_percent_usage 93.66%
 ```

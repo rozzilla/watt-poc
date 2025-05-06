@@ -2,6 +2,7 @@ import { FastifyInstance } from "fastify";
 import { Dispatcher, request, Agent } from "undici";
 import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts";
 
+const host = "127.0.0.1:3043";
 const dispatcher = new Agent({ connect: { rejectUnauthorized: false } });
 
 const checkAllServices = async (
@@ -80,14 +81,15 @@ export default async function (fastify: FastifyInstance) {
     },
     async () => ({
       success: await checkAllServices([
-        request("http://127.0.0.1:3043/fastify/live"),
-        request("http://127.0.0.1:3043/node"),
-        request("http://127.0.0.1:3043/typescript"),
-        request("http://127.0.0.1:3043/ts2"),
+        request(`http://${host}/fastify/live`),
+        request(`http://${host}/node`),
+        request(`http://${host}/typescript`),
+        request(`http://${host}/ts2`),
       ]),
     })
   );
 
+  // This endpoint, to work, requires that the app has been started with `npm run start:ssl`
   typedFastify.get(
     "/ssl",
     {
@@ -104,10 +106,10 @@ export default async function (fastify: FastifyInstance) {
     },
     async () => ({
       success: await checkAllServices([
-        request("https://127.0.0.1:3043/fastify/live", { dispatcher }),
-        request("https://127.0.0.1:3043/node", { dispatcher }),
-        request("https://127.0.0.1:3043/typescript", { dispatcher }),
-        request("https://127.0.0.1:3043/ts2", { dispatcher }),
+        request(`https://${host}/fastify/live`, { dispatcher }),
+        request(`https://${host}/node`, { dispatcher }),
+        request(`https://${host}/typescript`, { dispatcher }),
+        request(`https://${host}/ts2`, { dispatcher }),
       ]),
     })
   );
