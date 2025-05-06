@@ -1,6 +1,8 @@
 import { FastifyInstance } from "fastify";
-import { Dispatcher, request } from "undici";
+import { Dispatcher, request, Agent } from "undici";
 import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts";
+
+const dispatcher = new Agent({ connect: { rejectUnauthorized: false } });
 
 const checkAllServices = async (
   promises: Promise<Dispatcher.ResponseData<null>>[]
@@ -82,6 +84,30 @@ export default async function (fastify: FastifyInstance) {
         request("http://127.0.0.1:3043/node"),
         request("http://127.0.0.1:3043/typescript"),
         request("http://127.0.0.1:3043/ts2"),
+      ]),
+    })
+  );
+
+  typedFastify.get(
+    "/ssl",
+    {
+      schema: {
+        response: {
+          200: {
+            type: "object",
+            additionalProperties: false,
+            properties: { success: { type: "boolean" } },
+            required: ["success"],
+          },
+        },
+      },
+    },
+    async () => ({
+      success: await checkAllServices([
+        request("https://127.0.0.1:3043/fastify/live", { dispatcher }),
+        request("https://127.0.0.1:3043/node", { dispatcher }),
+        request("https://127.0.0.1:3043/typescript", { dispatcher }),
+        request("https://127.0.0.1:3043/ts2", { dispatcher }),
       ]),
     })
   );

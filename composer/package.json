@@ -7,7 +7,7 @@
     "fastify": "^5.0.0"
   },
   "dependencies": {
-    "@platformatic/composer": "^2.62.1"
+    "@platformatic/composer": "^2.63.2"
   },
   "engines": {
     "node": ">=22.12.0"

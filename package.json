@@ -12,10 +12,10 @@
     "test:performance:ipc": "autocannon -j -c 100 -d 10 -p 10 http://localhost:3043/tsfastify/ipc | jq '.' >> logs/ipc.log && npm run metrics >> logs/ipc.log && code logs/ipc.log"
   },
   "dependencies": {
-    "@platformatic/composer": "^2.62.1",
-    "@platformatic/node": "^2.62.1",
+    "@platformatic/composer": "^2.63.2",
+    "@platformatic/node": "^2.63.2",
     "typescript": "^5.6.3",
-    "wattpm": "^2.62.1",
+    "wattpm": "^2.63.2",
     "autocannon": "^8.0.0"
   }
 }
