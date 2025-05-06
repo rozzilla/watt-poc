@@ -1,6 +1,6 @@
 # watt-poc
 
-POC of [Watt](https://platformatic.dev/docs/watt/overview) features and benchmarks
+POC of [Watt](https://www.platformatichq.com/watt) features and benchmarks ([documentation](https://platformatic.dev/docs/watt/overview)).
 
 ## Setup
 
