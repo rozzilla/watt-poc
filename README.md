@@ -46,7 +46,6 @@ To conduct testing on your local machine, please proceed to the following sectio
 
 - 2xx => `4995#` (`SSL`) | `8223#` (`TCP`) | `40550#` (`IPC`)
 - latency.average => `1617ms` (`SSL`) | `808ms` (`TCP`) | `243ms` (`IPC`)
-- latency.p50 => `832ms` (`SSL`) | `181ms` (`TCP`) | `188ms` (`IPC`)
 - latency.p90 => `5380ms` (`SSL`) | `1227ms` (`TCP`) | `455ms` (`IPC`)
 - latency.p99 => `5397ms` (`SSL`) | `8076ms` (`TCP`) | `974ms` (`IPC`)
 - requests.average => `519/s` (`SSL`) | `1044/s` (`TCP`) | `4055/s` (`IPC`)
