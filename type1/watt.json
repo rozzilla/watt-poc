@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.platformatic.dev/@platformatic/node/2.62.1.json",
+  "$schema": "https://schemas.platformatic.dev/@platformatic/node/2.63.2.json",
   "application": {
     "commands": {
       "build": "npm run build",

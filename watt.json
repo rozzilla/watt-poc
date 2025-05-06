@@ -1,8 +1,14 @@
 {
-  "$schema": "https://schemas.platformatic.dev/wattpm/2.62.1.json",
+  "$schema": "https://schemas.platformatic.dev/wattpm/2.63.2.json",
   "server": {
     "hostname": "127.0.0.1",
-    "port": 3043
+    "port": 3043,
+    "https": {
+      "requestCert": false,
+      "rejectUnauthorized": false,
+      "key": { "path": "ssl/server.key" },
+      "cert": { "path": "ssl/server.crt" }
+    }
   },
   "logger": {
     "level": "info"
