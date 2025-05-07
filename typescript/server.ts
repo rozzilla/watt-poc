@@ -5,8 +5,10 @@ let count = 0;
 const server = createServer((req, res) => {
   res.setHeader("Content-Type", "application/json");
   res.end(
-    JSON.stringify({ content: `from type1 path "${req.url}": ${count++}!` })
+    JSON.stringify({
+      content: `from typescript path "${req.url}": ${count++}!`,
+    })
   );
 });
 
-server.listen(0);
+server.listen(3004);

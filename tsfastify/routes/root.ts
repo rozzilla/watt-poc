@@ -2,7 +2,6 @@ import { FastifyInstance } from "fastify";
 import { Dispatcher, request, Agent } from "undici";
 import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts";
 
-const host = "127.0.0.1:3043";
 const dispatcher = new Agent({ connect: { rejectUnauthorized: false } });
 
 const checkAllServices = async (
@@ -57,14 +56,15 @@ export default async function (fastify: FastifyInstance) {
     },
     async () => ({
       success: await checkAllServices([
-        request("http://fastify2.plt.local/live"),
-        request("http://node3.plt.local"),
-        request("http://type1.plt.local"),
-        request("http://type4.plt.local"),
+        request("http://fastify.plt.local/live"),
+        request("http://node.plt.local/live"),
+        request("http://typescript.plt.local/live"),
+        request("http://ts2.plt.local/live"),
       ]),
     })
   );
 
+  // This endpoint, to work, requires that the app has been started with `npm run start:tcp`
   typedFastify.get(
     "/tcp",
     {
@@ -81,10 +81,10 @@ export default async function (fastify: FastifyInstance) {
     },
     async () => ({
       success: await checkAllServices([
-        request(`http://${host}/fastify/live`),
-        request(`http://${host}/node`),
-        request(`http://${host}/typescript`),
-        request(`http://${host}/ts2`),
+        request("http://127.0.0.1:3001/live"),
+        request("http://127.0.0.1:3002/live"),
+        request("http://127.0.0.1:3003/live"),
+        request("http://127.0.0.1:3004/live"),
       ]),
     })
   );
@@ -106,10 +106,10 @@ export default async function (fastify: FastifyInstance) {
     },
     async () => ({
       success: await checkAllServices([
-        request(`https://${host}/fastify/live`, { dispatcher }),
-        request(`https://${host}/node`, { dispatcher }),
-        request(`https://${host}/typescript`, { dispatcher }),
-        request(`https://${host}/ts2`, { dispatcher }),
+        request("https://127.0.0.1:4001/live", { dispatcher }),
+        request("https://127.0.0.1:4002/live", { dispatcher }),
+        request("https://127.0.0.1:4003/live", { dispatcher }),
+        request("https://127.0.0.1:4004/live", { dispatcher }),
       ]),
     })
   );
