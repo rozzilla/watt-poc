@@ -1,4 +1,5 @@
 import autocannon from "autocannon";
+import { type ChildProcessWithoutNullStreams, spawn } from "node:child_process";
 import fs from "node:fs";
 
 const getMbFromBytes = (data: number): number =>
@@ -11,8 +12,7 @@ const getMetricValue = (data: string, key: string): number => {
   return match && match[1] ? Math.round(Number.parseFloat(match[1])) : -1;
 };
 
-const performance = async () => {
-  const type = process.env.TYPE || "ipc";
+const writeMetrics = async (type: "ipc" | "tcp" | "ssl") => {
   console.info(`\nRunning benchmarks for ${type.toUpperCase()} connection\n`);
 
   const result = await autocannon({
@@ -58,15 +58,48 @@ heap.size.old => ${getMbFromBytes(
         'nodejs_heap_space_size_used_bytes{space="old",serviceId="tsfastify"}'
       )
     )}MB
-elu => ${getMetricValue(
-      metricsData,
-      'nodejs_eventloop_utilization{serviceId="tsfastify"}'
-    )}
-cpu => ${getMetricValue(
+thread.cpu.usage => ${getMetricValue(
       metricsData,
       'thread_cpu_percent_usage{serviceId="tsfastify"}'
     )}%`
   );
+};
+
+export async function startWatt(): Promise<ChildProcessWithoutNullStreams> {
+  const process = spawn("npm", ["run", "start:all"], { detached: true });
+
+  return new Promise((resolve, reject) => {
+    const onData = (data: Buffer) => {
+      const input = data.toString();
+      if (input.includes("Platformatic is now listening at ")) {
+        removeListeners();
+        resolve(process);
+      }
+    };
+
+    const onError = (error: Error) => {
+      removeListeners();
+      reject(error);
+    };
+
+    const removeListeners = () => {
+      process.stdout.removeListener("data", onData);
+      process.removeListener("error", onError);
+    };
+
+    process.stdout.on("data", onData);
+    process.on("error", onError);
+  });
+}
+
+const performance = async () => {
+  const watt = await startWatt();
+
+  await writeMetrics("ipc");
+  await writeMetrics("tcp");
+  await writeMetrics("ssl");
+
+  if (watt.pid) process.kill(-watt?.pid, "SIGKILL");
 };
 
 performance();

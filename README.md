@@ -32,11 +32,7 @@ Through `watt` you have automatically an Open API schema that reflect your api. 
 
 The benchmarks will compare service-to-service communication, where an endpoint (from the `tsfastify` service) will take care of getting a response from 4 other services (`fastify`, `node`, `ts2`, `typescript`). This number of requests is more than usual in a micro-service or a service-oriented architecture, and thanks to `watt`, we can compare the performance differences between `IPC` (exposed through the `/ipc` endpoint) versus `TCP` (on the `/tcp` route), and `SSL` (on the `/ssl` route).
 
-To run the benchmarks on your local machine for the different types of communication:
-
-- for `IPC` run `npm run start > logs/tmp.log`, then `TYPE=ipc npm run test:performance`
-- for `TCP` run `npm run start:tcp > logs/tmp.log`, then `TYPE=tcp npm run test:performance`
-- for `SSL` run `npm run start:ssl > logs/tmp.log`, then `TYPE=ssl npm run test:performance`
+To run the benchmarks on your local machine for the different types of communication just wait for the `npm run test:performance` to be completed (it takes ~1 minute), then analyze the `logs`.
 
 ### Result
 

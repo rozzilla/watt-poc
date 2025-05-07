@@ -4,12 +4,12 @@
     "dev": "wattpm dev",
     "build": "wattpm build",
     "start": "wattpm start",
-    "start:tcp": "npm run start & node fastify/server.js & node node/server.js & node --experimental-strip-types ts2/index.ts & node --experimental-strip-types typescript/server.ts",
-    "start:ssl": "npm run start & node fastify/server-ssl.js & node node/server-ssl.js & node --experimental-strip-types ts2/index-ssl.ts & node --experimental-strip-types typescript/server-ssl.ts",
+    "start:tcp": "node fastify/server.js & node node/server.js & node --experimental-strip-types ts2/index.ts & node --experimental-strip-types typescript/server.ts",
+    "start:ssl": "node fastify/server-ssl.js & node node/server-ssl.js & node --experimental-strip-types ts2/index-ssl.ts & node --experimental-strip-types typescript/server-ssl.ts",
     "start:all": "npm run start & npm run start:tcp & npm run start:ssl",
     "setup": "npm i && npm run build && cd ./fastify && npm i && cd ../node && npm i && cd ../ts2 && npm i && npm run build && cd ../tsfastify && npm i && npm run build && cd ../typescript && npm i && npm run build",
     "clean": "rm -rf ./ts2/dist && rm -rf ./tsfastify/dist && rm -rf ./typescript/dist && rm -rf ./logs/*.log",
-    "test:performance": "node --experimental-strip-types performance.ts"
+    "test:performance": "node --experimental-transform-types performance.ts"
   },
   "dependencies": {
     "@platformatic/service": "^2.63.2",
