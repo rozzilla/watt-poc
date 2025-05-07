@@ -21,7 +21,6 @@ const writeMetrics = async (type: "ipc" | "tcp" | "ssl") => {
     pipelining: 10,
     url: `http://127.0.0.1:3043/${type}`,
   });
-
   const metrics = await fetch("http://127.0.0.1:8008/metrics");
   const metricsData = await metrics.text();
 
@@ -92,11 +91,15 @@ export async function startWatt(): Promise<ChildProcessWithoutNullStreams> {
   });
 }
 
+const wait = (ms = 5000) => new Promise((resolve) => setTimeout(resolve, ms));
+
 const performance = async () => {
   const watt = await startWatt();
 
   await writeMetrics("ipc");
+  await wait();
   await writeMetrics("tcp");
+  await wait();
   await writeMetrics("ssl");
 
   if (watt.pid) process.kill(-watt?.pid, "SIGKILL");

@@ -16,7 +16,7 @@
     "hostname": "127.0.0.1",
     "port": 8008
   },
-  "workers": 1,
+  "workers": 2,
   "entrypoint": "tsfastify",
   "services": [
     {

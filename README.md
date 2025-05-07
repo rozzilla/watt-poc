@@ -40,47 +40,44 @@ Results can vary depending on the hardware specifications and many other variabl
 
 ```shell
 IPC
-2xx => 40547#
-latency.avg => 244ms
-latency.p50 => 193ms
-latency.p90 => 373ms
-latency.p99 => 1037ms
-requests.avg => 4055/s
-throughput.avg => 736KB
-heap.size.total => 283MB
-heap.size.used => 148MB
-heap.size.new => 29MB
-heap.size.old => 108MB
-elu => 100%
-cpu => 75%
+2xx => 39008#
+latency.avg => 254ms
+latency.p50 => 214ms
+latency.p90 => 334ms
+latency.p99 => 613ms
+requests.avg => 3901/s
+throughput.avg => 709KB
+heap.size.total => 315MB
+heap.size.used => 97MB
+heap.size.new => 14MB
+heap.size.old => 71MB
+thread.cpu.usage => 84%
 
 TCP
-2xx => 38459#
-latency.avg => 250ms
-latency.p50 => 169ms
-latency.p90 => 402ms
-latency.p99 => 2016ms
-requests.avg => 3926/s
-throughput.avg => 724KB
-heap.size.total => 450MB
-heap.size.used => 355MB
-heap.size.new => 43MB
-heap.size.old => 300MB
-elu => 100%
-cpu => 83%
+2xx => 24394#
+latency.avg => 334ms
+latency.p50 => 245ms
+latency.p90 => 537ms
+latency.p99 => 1826ms
+requests.avg => 2562/s
+throughput.avg => 483KB
+heap.size.total => 470MB
+heap.size.used => 171MB
+heap.size.new => 19MB
+heap.size.old => 136MB
+thread.cpu.usage => 100%
 
 SSL
-2xx => 8658#
-latency.avg => 792ms
-latency.p50 => 515ms
-latency.p90 => 1760ms
-latency.p99 => 6020ms
-requests.avg => 1052/s
-throughput.avg => 218KB
-heap.size.total => 220MB
-heap.size.used => 109MB
-heap.size.new => 23MB
-heap.size.old => 74MB
-elu => 100%
-cpu => 16%
+2xx => 10923#
+latency.avg => 886ms
+latency.p50 => 368ms
+latency.p90 => 2049ms
+latency.p99 => 6563ms
+requests.avg => 1119/s
+throughput.avg => 207KB
+heap.size.total => 308MB
+heap.size.used => 174MB
+heap.size.new => 21MB
+heap.size.old => 140MB
+thread.cpu.usage => 98%
 ```
