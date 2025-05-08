@@ -64,7 +64,7 @@ thread.cpu.usage => ${getMetricValue(
   );
 };
 
-export async function startWatt(): Promise<ChildProcessWithoutNullStreams> {
+export async function startWatt(): Promise<number | undefined> {
   const process = spawn("npm", ["run", "start:all"], { detached: true });
 
   return new Promise((resolve, reject) => {
@@ -72,7 +72,7 @@ export async function startWatt(): Promise<ChildProcessWithoutNullStreams> {
       const input = data.toString();
       if (input.includes("Platformatic is now listening at ")) {
         removeListeners();
-        resolve(process);
+        resolve(process.pid);
       }
     };
 
@@ -94,7 +94,7 @@ export async function startWatt(): Promise<ChildProcessWithoutNullStreams> {
 const wait = (ms = 5000) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const performance = async () => {
-  const watt = await startWatt();
+  const pid = await startWatt();
 
   await writeMetrics("ipc");
   await wait();
@@ -102,7 +102,7 @@ const performance = async () => {
   await wait();
   await writeMetrics("ssl");
 
-  if (watt.pid) process.kill(-watt?.pid, "SIGKILL");
+  if (pid) process.kill(-pid, "SIGKILL");
 };
 
 performance();

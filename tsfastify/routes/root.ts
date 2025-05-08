@@ -7,7 +7,10 @@ const dispatcher = new Agent({ connect: { rejectUnauthorized: false } });
 const checkAllServices = async (
   promises: Promise<Dispatcher.ResponseData<null>>[]
 ): Promise<boolean> =>
-  (await Promise.all(promises)).every(({ statusCode }) => statusCode === 200);
+  (await Promise.all(promises)).every(async ({ statusCode, body }) => {
+    statusCode === 200;
+    await body.dump();
+  });
 
 export default async function (fastify: FastifyInstance) {
   const typedFastify = fastify.withTypeProvider<JsonSchemaToTsProvider>();
