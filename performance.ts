@@ -1,5 +1,6 @@
 import autocannon from "autocannon";
-import { type ChildProcessWithoutNullStreams, spawn } from "node:child_process";
+import { spawn } from "node:child_process";
+import { info } from "node:console";
 import fs from "node:fs";
 
 const getMbFromBytes = (data: number): number =>
@@ -13,7 +14,7 @@ const getMetricValue = (data: string, key: string): number => {
 };
 
 const writeMetrics = async (type: "ipc" | "tcp" | "ssl") => {
-  console.info(`\nRunning benchmarks for ${type.toUpperCase()} connection\n`);
+  info(`\nRunning benchmarks for ${type.toUpperCase()} connection\n`);
 
   const result = await autocannon({
     connections: 100,
@@ -27,6 +28,7 @@ const writeMetrics = async (type: "ipc" | "tcp" | "ssl") => {
   fs.writeFileSync(
     `logs/${type}.log`,
     `2xx => ${result["2xx"]}#
+5xx => ${result["5xx"]}#
 latency.avg => ${Math.round(result.latency.average)}ms
 latency.p50 => ${result.latency.p50}ms
 latency.p90 => ${result.latency.p90}ms
@@ -91,16 +93,18 @@ export async function startWatt(): Promise<number | undefined> {
   });
 }
 
-const wait = (ms = 5000) => new Promise((resolve) => setTimeout(resolve, ms));
+const wait = () => new Promise((resolve) => setTimeout(resolve, 3500));
 
 const performance = async () => {
   const pid = await startWatt();
 
+  info("\nBenchmark started\n");
   await writeMetrics("ipc");
   await wait();
   await writeMetrics("tcp");
   await wait();
   await writeMetrics("ssl");
+  info("\nBenchmark ended\n");
 
   if (pid) process.kill(-pid, "SIGKILL");
 };
