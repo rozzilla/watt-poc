@@ -67,7 +67,6 @@ export default async function (fastify: FastifyInstance) {
     })
   );
 
-  // This endpoint, to work, requires that the app has been started with `npm run start:tcp`
   typedFastify.get(
     "/tcp",
     {
@@ -92,7 +91,6 @@ export default async function (fastify: FastifyInstance) {
     })
   );
 
-  // This endpoint, to work, requires that the app has been started with `npm run start:ssl`
   typedFastify.get(
     "/ssl",
     {
