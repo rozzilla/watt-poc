@@ -14,7 +14,7 @@ const getMetricValue = (data: string, key: string): number => {
 };
 
 const writeMetrics = async (type: "ipc" | "tcp" | "ssl") => {
-  info(`\nRunning benchmarks for ${type.toUpperCase()} connection\n`);
+  info(`Running benchmarks for ${type.toUpperCase()} connection\n`);
 
   const result = await autocannon({
     connections: 100,
@@ -104,7 +104,7 @@ const performance = async () => {
   await writeMetrics("tcp");
   await wait();
   await writeMetrics("ssl");
-  info("\nBenchmark ended\n");
+  info("Benchmark ended");
 
   if (pid) process.kill(-pid, "SIGKILL");
 };

@@ -8,8 +8,8 @@ const checkAllServices = async (
   promises: Promise<Dispatcher.ResponseData<null>>[]
 ): Promise<boolean> =>
   (await Promise.all(promises)).every(async ({ statusCode, body }) => {
-    statusCode === 200;
     await body.dump();
+    return statusCode === 200;
   });
 
 export default async function (fastify: FastifyInstance) {
