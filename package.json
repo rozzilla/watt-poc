@@ -4,6 +4,7 @@
     "dev": "wattpm dev",
     "build": "wattpm build",
     "start": "wattpm start",
+    "admin": "wattpm admin",
     "start:tcp": "node fastify/server.js & node node/server.js & node --experimental-strip-types ts2/index.ts & node --experimental-strip-types typescript/server.ts",
     "start:ssl": "node fastify/server-ssl.js & node node/server-ssl.js & node --experimental-strip-types ts2/index-ssl.ts & node --experimental-strip-types typescript/server-ssl.ts",
     "start:all": "npm run start & npm run start:tcp & npm run start:ssl",
@@ -12,6 +13,7 @@
     "test:performance": "node --experimental-transform-types performance.ts"
   },
   "dependencies": {
+    "@platformatic/watt-admin": "^0.3.0",
     "@platformatic/service": "^2.63.2",
     "@platformatic/node": "^2.63.2",
     "wattpm": "^2.63.2"
