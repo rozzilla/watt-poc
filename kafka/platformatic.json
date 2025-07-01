@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.platformatic.dev/@platformatic/kafka-hooks/0.3.0.json",
+  "module": "@platformatic/kafka-hooks",
+  "kafka": {
+    "brokers": [
+      "{PLT_KAFKA_BROKER}"
+    ],
+    "topics": [
+      {
+        "topic": "{PLT_KAFKA_TOPIC}",
+        "url": "{PLT_KAFKA_URL}"
+      }
+    ],
+    "consumer": {
+      "groupId": "{PLT_KAFKA_CONSUMER_GROUP}",
+      "maxWaitTime": 500,
+      "sessionTimeout": 10000,
+      "rebalanceTimeout": 15000,
+      "heartbeatInterval": 500
+    }
+  },
+  "server": {
+    "hostname": "{PLT_SERVER_HOSTNAME}",
+    "port": "{PORT}",
+    "logger": {
+      "level": "{PLT_SERVER_LOGGER_LEVEL}"
+    }
+  },
+  "watch": true
+}

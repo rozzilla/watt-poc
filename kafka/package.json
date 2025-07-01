@@ -1,0 +1,13 @@
+{
+  "name": "kafka-hooks-app",
+  "scripts": {
+    "start": "platformatic start",
+    "test": "echo \"No tests defined\"."
+  },
+  "dependencies": {
+    "@platformatic/kafka-hooks": "^0.3.0"
+  },
+  "engines": {
+    "node": ">= 22.14.0"
+  }
+}

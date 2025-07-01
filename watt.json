@@ -20,6 +20,10 @@
   "entrypoint": "tsfastify",
   "services": [
     {
+      "id": "kafka",
+      "path": "./kafka"
+    },
+    {
       "id": "fastify",
       "path": "./fastify"
     },
