@@ -7,7 +7,7 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@platformatic/node": "^2.63.2",
+    "@platformatic/node": "^2.70.1",
     "tsx": "^4.19.2"
   },
   "devDependencies": {

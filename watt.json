@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.platformatic.dev/wattpm/2.63.2.json",
+  "$schema": "https://schemas.platformatic.dev/wattpm/2.70.1.json",
   "server": {
     "hostname": "127.0.0.1",
     "port": 3043
