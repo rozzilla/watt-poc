@@ -1,10 +1,8 @@
 {
-  "$schema": "https://schemas.platformatic.dev/@platformatic/kafka-hooks/0.3.0.json",
+  "$schema": "https://schemas.platformatic.dev/@platformatic/kafka-hooks/0.5.0.json",
   "module": "@platformatic/kafka-hooks",
   "kafka": {
-    "brokers": [
-      "{PLT_KAFKA_BROKER}"
-    ],
+    "brokers": ["{PLT_KAFKA_BROKER}"],
     "topics": [
       {
         "topic": "{PLT_KAFKA_TOPIC}",
