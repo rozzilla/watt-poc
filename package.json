@@ -3,24 +3,11 @@
   "scripts": {
     "dev": "wattpm dev",
     "build": "wattpm build",
-    "start": "wattpm start",
-    "admin": "./node_modules/.bin/watt-admin",
-    "start:tcp": "node fastify/server.js & node node/server.js & node --experimental-strip-types ts2/index.ts & node --experimental-strip-types typescript/server.ts",
-    "start:ssl": "node fastify/server-ssl.js & node node/server-ssl.js & node --experimental-strip-types ts2/index-ssl.ts & node --experimental-strip-types typescript/server-ssl.ts",
-    "start:all": "npm run start & npm run start:tcp & npm run start:ssl",
-    "setup": "npm i && npm run build && cd ./fastify && npm i && cd ../node && npm i && cd ../ts2 && npm i && npm run build && cd ../tsfastify && npm i && npm run build && cd ../typescript && npm i && npm run build",
-    "clean": "rm -rf ./ts2/dist && rm -rf ./tsfastify/dist && rm -rf ./typescript/dist && rm -rf ./logs/*.log",
-    "test:performance": "node --experimental-transform-types performance.ts"
+    "start": "wattpm start"
   },
   "dependencies": {
-    "@platformatic/watt-admin": "^0.4.0",
-    "@platformatic/service": "^2.72.0",
-    "@platformatic/node": "^2.72.0",
-    "wattpm": "^2.72.0"
-  },
-  "devDependencies": {
-    "typescript": "^5.6.3",
-    "autocannon": "^8.0.0",
-    "@types/autocannon": "^7.12.6"
+    "@platformatic/service": "^3.10.0",
+    "@platformatic/node": "^3.10.0",
+    "wattpm": "^3.10.0"
   }
 }

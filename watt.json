@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.platformatic.dev/wattpm/2.72.0.json",
+  "$schema": "https://schemas.platformatic.dev/wattpm/3.10.0.json",
   "server": {
     "hostname": "127.0.0.1",
     "port": 3043
@@ -17,31 +17,11 @@
     "port": 8008
   },
   "workers": 2,
-  "entrypoint": "tsfastify",
+  "entrypoint": "fastify",
   "services": [
-    {
-      "id": "kafka",
-      "path": "./kafka"
-    },
     {
       "id": "fastify",
       "path": "./fastify"
-    },
-    {
-      "id": "tsfastify",
-      "path": "./tsfastify"
-    },
-    {
-      "id": "node",
-      "path": "./node"
-    },
-    {
-      "id": "typescript",
-      "path": "./typescript"
-    },
-    {
-      "id": "ts2",
-      "path": "./ts2"
     }
   ]
 }
