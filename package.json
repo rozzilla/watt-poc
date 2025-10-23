@@ -6,6 +6,7 @@
     "start": "wattpm start"
   },
   "dependencies": {
+    "@platformatic/wattpm-pprof-capture": "^3.10.0",
     "@platformatic/service": "^3.10.0",
     "@platformatic/node": "^3.10.0",
     "wattpm": "^3.10.0"
